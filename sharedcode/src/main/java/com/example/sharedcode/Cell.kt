@@ -12,6 +12,11 @@ class Cell (val row: Int, val col: Int){
     var state: CellState = CellState.COVERED
     var location: Location = Location(row, col)
 
+    fun InitCell(value: Int, loc: Location) {
+        this.value = value;
+        this.location = loc;
+    }
+
     fun changeState(new_state: CellState) {
         this.state = new_state
         // change image corresponding to new state
