@@ -1,6 +1,6 @@
 package com.example.sharedcode
 
-class Cell {
+class Cell (val row: Int, val col: Int){
     enum class CellState {
         COVERED,
         FLAGGED,
@@ -9,7 +9,8 @@ class Cell {
 
     var value: Int = 0
     var imageFile: String = "@drawable/facing_down"
-    var state: CellState = CellState.COVERED;
+    var state: CellState = CellState.COVERED
+    var location: Location = Location(row, col)
 
     fun changeState(new_state: CellState) {
         this.state = new_state
