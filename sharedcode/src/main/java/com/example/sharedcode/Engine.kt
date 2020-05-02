@@ -30,6 +30,7 @@ class Engine {
 
             if (this.board.IsMine(Location(row, col))) {
                 this.state = GameState.kLose
+                openMines()
                 println("LOSES!!!!!")
             }
         }
@@ -53,4 +54,9 @@ class Engine {
         }
     }
 
+    fun openMines() {
+        for (loc in this.board.minesLoc) {
+            this.board.cells[loc.row][loc.col].changeState(Cell.CellState.OPENED)
+        }
+    }
 }

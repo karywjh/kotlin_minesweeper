@@ -36,10 +36,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = CellAdapter(this, R.layout.chunk_cell, data)
                 gridView.adapter = adapter
 
-                if (engine.state == Engine.GameState.kLose) {
-                    end_text.text = "You Lose!!!"
-                    end_text.visibility = View.VISIBLE
-                } else if (engine.state == Engine.GameState.kWin) {
+                if (engine.state == Engine.GameState.kWin) {
                     end_text.text = "You Win!!!"
                     end_text.visibility = View.VISIBLE
                 }
@@ -55,8 +52,6 @@ class MainActivity : AppCompatActivity() {
             gridView.adapter = adapter
             true
         }
-
-
 
     }
 
