@@ -1,10 +1,11 @@
 package com.example.sharedcode
 
 import android.os.Bundle
-import android.widget.AdapterView
+import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     val engine = Engine()
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                     engine.openCell(loc.row, loc.col)
                     data[position] = CellLayout(engine.board.cells[loc.row][loc.col].imageFile)
                     println("start game, open cell: ${loc.row}, ${loc.col}")
-                } else {
+                } else if (engine.state == Engine.GameState.kPlaying) {
                     engine.openCell(loc.row, loc.col)
                     data[position] = CellLayout(engine.board.cells[loc.row][loc.col].imageFile)
                     println("middle game, open cell: ${loc.row}, ${loc.col}")
@@ -34,6 +35,14 @@ class MainActivity : AppCompatActivity() {
 
                 adapter = CellAdapter(this, R.layout.chunk_cell, data)
                 gridView.adapter = adapter
+
+                if (engine.state == Engine.GameState.kLose) {
+                    end_text.text = "You Lose!!!"
+                    end_text.visibility = View.VISIBLE
+                } else if (engine.state == Engine.GameState.kWin) {
+                    end_text.text = "You Win!!!"
+                    end_text.visibility = View.VISIBLE
+                }
             }
 
         gridView.setOnItemLongClickListener { adapterView, view, i, l ->
@@ -46,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             gridView.adapter = adapter
             true
         }
+
+
 
     }
 

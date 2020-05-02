@@ -5,8 +5,20 @@
     android:id="@+id/game_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:visibility="visible"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/end_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="You Lose!"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="gone" />
 
     <GridView
         android:id="@+id/gridview"
@@ -14,10 +26,6 @@
         android:layout_height="match_parent"
         android:columnWidth="30dp"
         android:numColumns="auto_fit" />
-<!--        android:columnWidth="30dp"-->
-<!--        android:gravity="center"-->
-<!--        android:numColumns="13"-->
-<!--        android:stretchMode="spacingWidthUniform"-->
-<!--        app:srcCompat="@drawable/facing_down" />-->
+
 
 </LinearLayout>
