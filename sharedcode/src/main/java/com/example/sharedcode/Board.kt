@@ -3,9 +3,9 @@ package com.example.sharedcode
 import kotlin.random.Random
 
 class Board {
-    var width: Int = 9
-    var height: Int = 9
-    var mineCount: Int = 40
+    var width: Int = 13
+    var height: Int = 23
+    var mineCount: Int = 100
     var id: Int = Random.nextInt()
     var cells: List<List<Cell>> = List(height) { i -> List(width) { j -> Cell(i, j) } }
     var minesLoc: MutableSet<Location> = mutableSetOf()
