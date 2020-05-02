@@ -78,4 +78,10 @@ class Board {
 
     }
 
+    fun getLocation(index: Int): Location {
+        val row = index / this.width
+        val col = index % this.width
+
+        return Location(row, col)
+    }
 }

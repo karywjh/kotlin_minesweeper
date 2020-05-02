@@ -8,7 +8,7 @@ class Cell (val row: Int, val col: Int){
     }
 
     var value: Int = 0
-    var imageFile: String = "@drawable/facing_down"
+    var imageFile = R.drawable.facing_down
     var state: CellState = CellState.COVERED
     var location: Location = Location(row, col)
 
@@ -19,18 +19,31 @@ class Cell (val row: Int, val col: Int){
 
     fun changeState(new_state: CellState) {
         this.state = new_state
+
         // change image corresponding to new state
         if (new_state == CellState.COVERED) {
-            this.imageFile = "@drawable/facing_down"
+            this.imageFile = R.drawable.facing_down
         } else if (new_state == CellState.FLAGGED) {
-            this.imageFile = "@drawable/flagged"
+            this.imageFile = R.drawable.flagged
         } else if (new_state == CellState.OPENED) {
             // Display bomb image if value is -1 (cell is bomb)
-            if (this.value < 0) {
-                this.imageFile = "@drawable/bomb"
-            } else {
-                this.imageFile = "@drawable/" + value.toString()
-            }
+            this.imageFile = GetImage(this.value)
+        }
+    }
+
+    fun GetImage(value: Int): Int = when (value) {
+        -1 -> R.drawable.bomb
+        0 -> R.drawable.cell0
+        1 -> R.drawable.cell1
+        2 -> R.drawable.cell2
+        3 -> R.drawable.cell3
+        4 -> R.drawable.cell4
+        5 -> R.drawable.cell5
+        6 -> R.drawable.cell6
+        7 -> R.drawable.cell7
+        8 -> R.drawable.cell8
+        else -> {
+            R.mipmap.ic_launcher
         }
     }
 }
