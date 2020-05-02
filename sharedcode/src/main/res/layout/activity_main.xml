@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_constraint"
@@ -10,13 +10,14 @@
 
     <GridView
         android:id="@+id/gridview"
-        android:layout_width="390dp"
-        android:layout_height="690dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:columnWidth="30dp"
-        android:rowWidth="30dp"
-        android:gravity="center"
-        android:numColumns="13"
-        android:stretchMode="spacingWidthUniform"
-        app:srcCompat="@drawable/facing_down" />
+        android:numColumns="auto_fit" />
+<!--        android:columnWidth="30dp"-->
+<!--        android:gravity="center"-->
+<!--        android:numColumns="13"-->
+<!--        android:stretchMode="spacingWidthUniform"-->
+<!--        app:srcCompat="@drawable/facing_down" />-->
 
-</RelativeLayout>
+</LinearLayout>

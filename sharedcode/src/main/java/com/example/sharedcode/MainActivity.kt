@@ -1,7 +1,15 @@
 package com.example.sharedcode
 
 import android.os.Bundle
+import android.widget.GridLayout
+import android.widget.GridLayout.spec
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.chunk_cell.*
+
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,9 +19,13 @@ class MainActivity : AppCompatActivity() {
 
         val board = Board()
         board.GenerateBoard(Location(0, 0))
-//
 
-//        val adapter: GridAdapter = gridv.getAdapter() as GridAdapter
+
+        val gridView = this.findViewById(R.id.gridview) as GridView
+
+        val adapter = CellAdapter(this, R.layout.chunk_cell, data)
+
+        gridView.adapter = adapter
 
 //        boardGrid.get = chunk_cell
 //        val adapter: ArrayAdapter<*> =
@@ -24,4 +36,30 @@ class MainActivity : AppCompatActivity() {
 //            boardGrid.addView(chunk_cell)
 //        }
     }
+
+    val data: ArrayList<CellLayout>
+    get() {
+        val item_list: ArrayList<CellLayout> = ArrayList<CellLayout>()
+
+        item_list.add(CellLayout(R.drawable.facing_down))
+        item_list.add(CellLayout(R.drawable.cell0))
+        item_list.add(CellLayout(R.drawable.cell1))
+        item_list.add(CellLayout(R.drawable.cell2))
+        item_list.add(CellLayout(R.drawable.facing_down))
+        item_list.add(CellLayout(R.drawable.cell0))
+        item_list.add(CellLayout(R.drawable.cell1))
+        item_list.add(CellLayout(R.drawable.cell2))
+        item_list.add(CellLayout(R.drawable.facing_down))
+        item_list.add(CellLayout(R.drawable.cell0))
+        item_list.add(CellLayout(R.drawable.cell1))
+        item_list.add(CellLayout(R.drawable.cell2))
+        item_list.add(CellLayout(R.drawable.facing_down))
+        item_list.add(CellLayout(R.drawable.cell0))
+        item_list.add(CellLayout(R.drawable.cell1))
+        item_list.add(CellLayout(R.drawable.cell2))
+
+
+        return item_list
+    }
+
 }
