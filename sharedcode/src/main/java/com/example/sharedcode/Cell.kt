@@ -1,6 +1,6 @@
 package com.example.sharedcode
 
-class Cell (val row: Int, val col: Int){
+class Cell (row: Int, col: Int){
     enum class CellState {
         COVERED,
         FLAGGED,
@@ -13,8 +13,8 @@ class Cell (val row: Int, val col: Int){
     var location: Location = Location(row, col)
 
     fun InitCell(value: Int, loc: Location) {
-        this.value = value;
-        this.location = loc;
+        this.value = value
+        this.location = loc
     }
 
     fun changeState(new_state: CellState) {

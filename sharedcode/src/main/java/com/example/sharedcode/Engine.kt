@@ -30,11 +30,13 @@ class Engine {
 
             if (this.board.IsMine(Location(row, col))) {
                 this.state = GameState.kLose
+                println("LOSES!!!!!")
             }
         }
 
         if (this.board.nonMines.isEmpty()) {
             this.state = GameState.kWin
+            println("WINS!!!")
         }
     }
 

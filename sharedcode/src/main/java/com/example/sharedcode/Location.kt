@@ -2,7 +2,7 @@ package com.example.sharedcode
 
 data class Location(val row: Int, val col: Int) {
 
-    fun getNeighbors(height: Int, width: Int): MutableList<Location> {
+    fun getNeighbors(height: Int, width: Int): MutableSet<Location> {
         val up: Location = this + Location(-1, 0)
         val down: Location = this + Location(1, 0)
         val right: Location = this + Location(0, 1)
@@ -12,7 +12,7 @@ data class Location(val row: Int, val col: Int) {
         val downRight: Location = this + Location(1, 1)
         val downLeft: Location = this + Location(1, -1)
 
-        val locList: MutableList<Location> = mutableListOf<Location>()
+        val locList: MutableSet<Location> = mutableSetOf()
 
         if (up.isValid(height, width)) {
             locList.add(up)

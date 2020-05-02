@@ -5,7 +5,7 @@ import kotlin.random.Random
 class Board {
     var width: Int = 13
     var height: Int = 23
-    var mineCount: Int = 100
+    var mineCount: Int = 60
     var id: Int = Random.nextInt()
     var cells: List<List<Cell>> = List(height) { i -> List(width) { j -> Cell(i, j) } }
     var minesLoc: MutableSet<Location> = mutableSetOf()
@@ -38,12 +38,10 @@ class Board {
     fun GenerateMines(start: Location) {
         val random = Random(this.id)
 
-        val startNeighbors: MutableList<Location> = start.getNeighbors(this.height, this.width)
-        startNeighbors.add(start)
-
         while (this.minesLoc.size < this.mineCount) {
-            val loc: Location = Location(random.nextInt(0, this.height), random.nextInt(0, this.width))
-            if (!startNeighbors.contains(loc)) {
+            val loc = Location(random.nextInt(0, this.height), random.nextInt(0, this.width))
+
+            if (!this.nonMines.contains(loc)) {
                 this.minesLoc.add(loc)
             }
         }
@@ -58,9 +56,9 @@ class Board {
         for (row in 0 until this.height) {
             for (col in 0 until this.width) {
                 if (this.cells[row][col].value >= 0) {
-                    val loc = Location(row, col);
-                    this.cells[row][col].InitCell(CountSurroundingMines(loc), loc)
-                    this.nonMines.add(loc)
+                    val location = Location(row, col)
+                    this.cells[row][col].InitCell(CountSurroundingMines(location), location)
+                    this.nonMines.add(location)
                 }
             }
         }
@@ -68,9 +66,11 @@ class Board {
 
     fun GenerateBoard(start: Location) {
         // Set start location to have value 0
-        this.cells[start.row][start.col].InitCell(-1, start)
+        this.cells[start.row][start.col].InitCell(0, start)
 
         // All cells that are neighbor to starting location can't be mines
+        this.nonMines = start.getNeighbors(this.height, this.width)
+        this.nonMines.add(start)
 
         // Randomly Place Mines and fill in rest of the board
         GenerateMines(start)
