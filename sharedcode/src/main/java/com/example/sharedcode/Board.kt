@@ -100,18 +100,48 @@ class Board {
         }
     }
 
-//    fun openNeighbors(location: Location) {
-//        if (this.cells[location.row][location.col].value == 0) {
-//            for (loc in location.getNeighbors(this.height, this.width)) {
-//
-//                if (this.cells[loc.row][loc.col].state != Cell.CellState.OPENED) {
-//                    this.cells[loc.row][loc.col].changeState(Cell.CellState.OPENED)
-//                    this.nonMines.remove(loc)
-//
-//                    // Recursion to open neighbors of 0 cells if they are being opened
-//                    openZeroNeighbors(loc)
-//                }
-//            }
-//        }
-//    }
+    fun openNeighbors(location: Location) {
+        if (this.cells[location.row][location.col].realValue == 0) {
+            for (loc in location.getNeighbors(this.height, this.width)) {
+
+
+                if (!IsMine(loc)) {
+                    this.cells[loc.row][loc.col].changeState(Cell.CellState.OPENED)
+                    this.nonMines.remove(loc)
+
+                    // Recursion to open neighbors of 0 cells if they are being opened
+                    openZeroNeighbors(loc)
+                }
+            }
+        }
+    }
+
+    fun changeNeighborVals(location: Location, value: Int) {
+        for (loc in location.getNeighbors(this.height, this.width)) {
+            if (!IsMine(loc)) {
+                this.cells[loc.row][loc.col].realValue += value
+            }
+        }
+    }
+
+    fun updateNeighbor(location: Location, to_flag: Boolean) {
+        val row = location.row
+        val col = location.col
+
+        if (IsMine(location)) {
+            // Flagged/Unflagged mine cell
+            if (to_flag) {
+                changeNeighborVals(location, -1)
+            } else {
+                changeNeighborVals(location, 1)
+            }
+        } else {
+            // Flagged/Unflagged non-mine cell
+            if (to_flag) {
+                changeNeighborVals(location, -10)
+            } else {
+                changeNeighborVals(location, 10)
+            }
+        }
+    }
 }
