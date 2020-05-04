@@ -6,6 +6,9 @@ Class: CS 199
 
 ---
 
+<img width="300" height="500" alt="img1" src="image/startingBoard.png"> <img width="260" height="500" alt="img2" src="image/board.png">
+
+
 ## Project Summary ##
 
 Using Kotlin Native to build a multiplatform game app - minesweeper. 
