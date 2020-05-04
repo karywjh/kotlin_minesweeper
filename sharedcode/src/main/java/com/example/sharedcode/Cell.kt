@@ -7,13 +7,15 @@ class Cell (row: Int, col: Int){
         OPENED,
     }
 
-    var value: Int = 0
+    var value = 0
+    var realValue = 0
     var imageFile = R.drawable.facing_down
     var state: CellState = CellState.COVERED
     var location: Location = Location(row, col)
 
     fun InitCell(value: Int, loc: Location) {
         this.value = value
+        this.realValue = value
         this.location = loc
     }
 

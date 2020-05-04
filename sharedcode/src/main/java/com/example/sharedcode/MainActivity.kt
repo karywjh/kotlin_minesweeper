@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
                 val loc = engine.board.getLocation(position)
                 if (engine.state == Engine.GameState.kNotStarted && engine.startGame(loc.row, loc.col)) {
                     engine.openCell(loc.row, loc.col)
+
+
                     data[position] = CellLayout(engine.board.cells[loc.row][loc.col].imageFile)
                     println("start game, open cell: ${loc.row}, ${loc.col}")
                 } else if (engine.state == Engine.GameState.kPlaying) {

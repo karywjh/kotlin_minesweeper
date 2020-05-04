@@ -28,6 +28,8 @@ class Engine {
             this.board.cells[row][col].changeState(Cell.CellState.OPENED)
             this.board.nonMines.remove(Location(row, col))
 
+            this.board.openZeroNeighbors(Location(row, col))
+
             if (this.board.IsMine(Location(row, col))) {
                 this.state = GameState.kLose
                 openMines()

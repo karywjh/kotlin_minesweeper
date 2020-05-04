@@ -84,4 +84,34 @@ class Board {
 
         return Location(row, col)
     }
+
+    fun openZeroNeighbors(location: Location) {
+        if (this.cells[location.row][location.col].value == 0) {
+            for (loc in location.getNeighbors(this.height, this.width)) {
+
+                if (this.cells[loc.row][loc.col].state != Cell.CellState.OPENED) {
+                    this.cells[loc.row][loc.col].changeState(Cell.CellState.OPENED)
+                    this.nonMines.remove(loc)
+
+                    // Recursion to open neighbors of 0 cells if they are being opened
+                    openZeroNeighbors(loc)
+                }
+            }
+        }
+    }
+
+//    fun openNeighbors(location: Location) {
+//        if (this.cells[location.row][location.col].value == 0) {
+//            for (loc in location.getNeighbors(this.height, this.width)) {
+//
+//                if (this.cells[loc.row][loc.col].state != Cell.CellState.OPENED) {
+//                    this.cells[loc.row][loc.col].changeState(Cell.CellState.OPENED)
+//                    this.nonMines.remove(loc)
+//
+//                    // Recursion to open neighbors of 0 cells if they are being opened
+//                    openZeroNeighbors(loc)
+//                }
+//            }
+//        }
+//    }
 }
